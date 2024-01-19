@@ -1,0 +1,162 @@
+#root {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+.page_404 {
+  padding: 40px 0;
+  background: #ffffff;
+  font-family: "Arvo", serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 50vh;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+  text-decoration: none;
+}
+.contant_box_404 {
+  margin-top: -50px;
+}
+
+.editor-form {
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 1.3rem;
+}
+.upload-image {
+  width: 30%;
+  height: 30%;
+}
+
+/* authLayout styling :  */
+
+.auth-layout-main {
+  /* background-image: url(https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_640.jpg); */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Signup page styling */
+.signup-page {
+  display: flex;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.fullname {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.signup-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 1.3rem;
+}
+.login-page-main {
+  border: 3.5px solid rgba(0, 0, 0, 0.119);
+  border-radius: 1rem;
+  padding: 1rem 1rem 2rem 1rem;
+  width: 28em;
+  color: rgba(38, 52, 186, 0.886);
+}
+.login-text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.login-form {
+  padding: 1rem 0;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+hr {
+  margin: 1rem 0;
+  text-align: center;
+  width: 100%;
+  border-radius: 35%;
+}
+.login-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.social-btn {
+  margin: 0.7rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1rem;
+}
+
+/* Here section use for made layout and design responsive */
+@media (max-width: 375px) {
+  .editor-form {
+    margin-top: -2rem;
+  }
+  .fullname {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .half-width {
+    width: 100%;
+  }
+}
