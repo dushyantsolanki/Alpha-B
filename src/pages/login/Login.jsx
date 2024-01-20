@@ -1,50 +1,76 @@
 import { TextField, InputAdornment, Button, Typography } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import GoogleIcon from "@mui/icons-material/Google";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import FacebookIcon from "@mui/icons-material/FaceBook";
-
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { authentication } from "../../firebase/authentication/authentication";
+import {
+  IconButton,
+  VisibilityIcon,
+  VisibilityOffIcon,
+  MailIcon,
+  GoogleIcon,
+  TwitterIcon,
+  FacebookIcon,
+} from "../../icon/icon.js";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { authentication } from "../../firebase/";
+import { toastConfig, toast } from "../../components/";
 
 function Login() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
+  const navigate = useNavigate();
+  const [loginData, setloginData] = useState({
     email: "",
     password: "",
+    showPassword: false,
   });
 
-  useEffect(() => {}, [formData, showPassword]);
   // onChange Event handler
   const onChangeHandler = (e) => {
-    setFormData({
-      ...formData,
+    setloginData({
+      ...loginData,
       [e.target.name]: e.target.value,
     });
   };
-  console.log(formData);
+
   // onSubmit Event Handler
 
-  const onSubmitHandler = async (e) => {};
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    const response = await authentication.login_with_email_password(loginData);
+    console.log(response);
+    if (response.status === true) {
+      const isEmailVerify = await authentication.email_varify_checker(
+        response.payload?.emailVerified
+      );
+
+      isEmailVerify
+        ? navigate("/dashboard")
+        : toast.error(`Your email is not verify `);
+    }
+    //
+    else {
+      toast.error(`${response.message}`, toastConfig);
+    }
+  };
 
   const loginWithGoogle = async () => {
     const response = await authentication.login_with_google();
-    console.log(response);
+    if (response.status) {
+      navigate("/dashboard");
+    }
   };
   const loginWithTwitter = async () => {
     const response = await authentication.login_with_twitter();
-    console.log(response);
+    if (response.status) {
+      navigate("/dashboard");
+    }
   };
   const loginWithFacebook = async () => {
     const response = await authentication.login_with_facebook();
-    console.log(response);
+    if (response.status) {
+      navigate("/dashboard");
+    }
   };
   return (
     <div className="login-page-main">
-      <Typography variant="h3" style={{ marginBottom: "2rem" }}>
+      <Typography variant="h3" style={{ margin: "0.1rem 0 2rem 0 " }}>
         {" "}
         Login To Alpha B
       </Typography>
@@ -56,15 +82,24 @@ function Login() {
             // label="Email"
             name="email"
             fullWidth
-            value={formData.email}
+            value={loginData.email}
             onChange={onChangeHandler}
             placeholder="Email"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton edge="end">
+                    <MailIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
         </div>
         <div className="login-password full-width">
           <TextField
             required
-            type={showPassword ? "text" : "password"}
+            type={loginData.showPassword ? "text" : "password"}
             placeholder="Password"
             name="password"
             fullWidth
@@ -73,25 +108,38 @@ function Login() {
                 <InputAdornment position="end">
                   <IconButton
                     onClick={() => {
-                      setShowPassword(!showPassword);
+                      setloginData((prev) => ({
+                        ...prev,
+                        showPassword: !prev.showPassword,
+                      }));
                     }}
                     edge="end"
                   >
-                    {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    {loginData.showPassword ? (
+                      <VisibilityOffIcon />
+                    ) : (
+                      <VisibilityIcon />
+                    )}
                   </IconButton>
                 </InputAdornment>
               ),
             }}
-            value={formData.password}
+            value={loginData.password}
             onChange={onChangeHandler}
           />
         </div>
         <div className="forgot-password ">
           <Typography>
-            <Link style={{ textDecoration: "none" }} to="forgot-password">
+            <Button
+              onClick={() => {
+                navigate("/auth/forgot-password");
+              }}
+              style={{ textDecoration: "none" }}
+              to="forgot-password"
+            >
               {" "}
               Forgot Password ?
-            </Link>
+            </Button>
           </Typography>
         </div>
         <div className="login-btn full-width">

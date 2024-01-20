@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import MenuIcon from "@mui/icons-material/Menu";
+import { ChevronLeftIcon, MenuIcon } from "../../icon/icon";
 import {
   CssBaseline,
   AppBar,
@@ -15,10 +14,10 @@ import {
   Button,
 } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
+import { authentication } from "../../firebase/";
+const drawerWidth = 200;
 
-const drawerWidth = 240;
-
-const DashboardLayout = () => {
+const DashboardLayout = ({ children }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -29,16 +28,17 @@ const DashboardLayout = () => {
     setOpenDrawer(false);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("users");
-
-    console.log("Logged out");
+  const handleLogout = async () => {
+    await authentication.logout();
   };
 
   return (
     <div style={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ backgroundColor: "#FFA500" }}>
+      <AppBar
+        position="fixed"
+        sx={{ backgroundColor: "#FFA500", zIndex: "1000" }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -49,7 +49,7 @@ const DashboardLayout = () => {
             {openDrawer ? <ChevronLeftIcon /> : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" noWrap>
-            Dashboard
+            Alpha Bee
           </Typography>
           <div
             style={{
@@ -79,10 +79,12 @@ const DashboardLayout = () => {
         ModalProps={{
           keepMounted: true,
         }}
+        style={{ zIndex: "500" }}
       >
         <div style={{ width: drawerWidth }}>
           <div
             style={{
+              margin: "4.5rem 0 0 0",
               display: "flex",
               alignItems: "center",
               padding: "8px 16px",
@@ -91,12 +93,6 @@ const DashboardLayout = () => {
             <Typography variant="h6" noWrap>
               Dashboard Menu
             </Typography>
-            <IconButton
-              onClick={handleDrawerClose}
-              style={{ marginLeft: "auto" }}
-            >
-              <ChevronLeftIcon />
-            </IconButton>
           </div>
           <Divider />
           <List>
@@ -132,8 +128,8 @@ const DashboardLayout = () => {
       <main
         style={{
           flexGrow: 1,
-          padding: "6px 2px",
-          marginLeft: openDrawer ? drawerWidth : 0,
+          padding: "0px 0px",
+          marginLeft: 0,
         }}
       >
         <Toolbar />

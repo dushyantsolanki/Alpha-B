@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, TextField, Typography } from "@mui/material";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { firestore } from "../../firebase/firestore/firestore";
-import { toast } from "react-toastify";
-import { toastConfig } from "../../components/react-toastify/toastConfig";
-import { authentication } from "../../firebase/authentication/authentication";
+import { Button, TextField, Typography, InputAdornment } from "@mui/material";
+import {
+  IconButton,
+  VisibilityIcon,
+  VisibilityOffIcon,
+  MailIcon,
+  AccountCircleIcon,
+} from "../../icon/icon";
+import { toast, toastConfig } from "../../components/";
+import { firestore, authentication } from "../../firebase/";
 
 function Signup() {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [isValidUser, setIsValidUser] = useState(false);
+
   const [formData, setFormData] = useState({
     userName: "",
     firstName: "",
     lastName: "",
     email: "",
     password: "",
+    showPassword: false,
+    isValidUser: false,
   });
 
-  const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
   const onChangeHadler = (e) => {
     setFormData({
       ...formData,
@@ -38,14 +37,15 @@ function Signup() {
       toast.error(`${res.message}`, toastConfig);
     } else {
       if (formData.userName.length > 0) {
-        setIsValidUser(res.payload);
+        setFormData((prev) => ({ ...prev, isValidUser: res.payload }));
       } else {
-        setIsValidUser(false);
+        setFormData((prev) => ({ ...prev, isValidUser: false }));
       }
     }
   };
   useEffect(() => {
     user();
+    console.log("inside effect");
   }, [formData.userName]);
 
   const onSubmitHandler = async (e) => {
@@ -53,7 +53,6 @@ function Signup() {
 
     // send data to authentication :
     const signupUserRes = await authentication.signupUser(formData);
-
     if (signupUserRes.status === true) {
       // send data to the firebase firestore :
       await firestore.registerDoc(
@@ -62,21 +61,23 @@ function Signup() {
         },
         signupUserRes.payload
       );
+      // At the end form field clear :
+      setFormData({
+        userName: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        showPassword: false,
+        isValidUser: false,
+      });
+      toast.success(`${signupUserRes.message}`, toastConfig);
       navigate("/auth/login");
     }
     //
     else {
       toast.error(`${signupUserRes.message}`, toastConfig);
     }
-
-    // At the end form field clear :
-    setFormData({
-      userName: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    });
   };
   return (
     <div className="signup-page">
@@ -91,11 +92,22 @@ function Signup() {
             type="text"
             placeholder="Username"
             name="userName"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton edge="end">
+                    <AccountCircleIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
             fullWidth
             value={formData.userName}
             onChange={onChangeHadler}
-            error={isValidUser}
-            helperText={isValidUser && `${formData.userName} is already use`}
+            error={formData.isValidUser}
+            helperText={
+              formData.isValidUser && `${formData.userName} is already use`
+            }
           />
         </div>
         <div className="fullname full-width">
@@ -134,6 +146,15 @@ function Signup() {
             fullWidth
             value={formData.email}
             onChange={onChangeHadler}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton edge="end">
+                    <MailIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
         </div>
 
@@ -141,15 +162,27 @@ function Signup() {
           {" "}
           <TextField
             required
-            type={showPassword ? "text" : "password"}
+            type={formData.showPassword ? "text" : "password"}
             placeholder="Password"
             name="password"
             fullWidth
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={handleTogglePassword} edge="end">
-                    {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                  <IconButton
+                    onClick={() => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        showPassword: !prev.showPassword,
+                      }));
+                    }}
+                    edge="end"
+                  >
+                    {formData.showPassword ? (
+                      <VisibilityOffIcon />
+                    ) : (
+                      <VisibilityIcon />
+                    )}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -162,7 +195,7 @@ function Signup() {
           <Button
             type="submit"
             variant="contained"
-            disabled={isValidUser}
+            disabled={formData.isValidUser}
             fullWidth
           >
             Register

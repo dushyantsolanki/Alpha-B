@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 
 function ErrorPage() {
@@ -22,8 +21,7 @@ function ErrorPage() {
 
                   <Link to="/dashboard" className="link_404">
                     {" "}
-                    <Typography variant="h6">  Go To Home</Typography>
-                   
+                    <Typography variant="h6"> Go To Home</Typography>
                   </Link>
                 </div>
               </div>

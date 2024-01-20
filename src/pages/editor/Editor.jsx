@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Editor as TinyEditor } from "@tinymce/tinymce-react";
-import { toast } from "react-toastify";
-import { toastConfig } from "../../components/index.js";
+import { toast, toastConfig } from "../../components/";
 import { Button, Input, TextField } from "@mui/material";
-import { bucket } from "../../firebase/storage/storage.js";
-import { firestore } from "../../firebase/firestore/firestore.js";
-import { CloudUploadRounded } from "@mui/icons-material";
+import { CloudUploadRounded } from "../../icon/icon.js";
+import { firestore, bucket } from "../../firebase/";
 
 // tinyMCE configuration object
 const editorConfig = {
