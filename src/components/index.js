@@ -1,2 +1,5 @@
+import { toast } from "react-toastify";
 import { toastConfig } from "./react-toastify/toastConfig";
-export { toastConfig };
+
+//export component
+export { toastConfig, toast };
