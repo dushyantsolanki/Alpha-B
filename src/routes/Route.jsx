@@ -14,21 +14,20 @@ import {
   ForgotPassword,
 } from "../pages";
 import { authentication } from "../firebase/";
-import { useSelector } from "../redux";
+import { useSelector, useDispatch, currentUser } from "../redux";
 import { onAuthStateChanged } from "firebase/auth";
 
 function Route() {
-  const [isAuthenticated, setIsAuthenticated] = useState();
-
-  const data = useSelector((state) => state.authReducer);
-
-  console.log("redux authReducer Data : ", data);
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.authReducer.userData);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(authentication.auth, (user) => {
       if (user) {
-        console.log(user);
-        setIsAuthenticated(user);
+        const { displayName, email, emailVerified, photoURL, uid } = user;
+        dispatch(
+          currentUser({ displayName, email, emailVerified, photoURL, uid })
+        );
       } else {
         console.log("user logout");
       }
@@ -36,13 +35,13 @@ function Route() {
     return () => {
       unsubscribe();
     };
-  }, [isAuthenticated]);
+  }, []);
 
   const router = createBrowserRouter([
     { path: "*", element: <ErrorPage /> },
     {
       path: "/",
-      element: isAuthenticated?.emailVerified ? (
+      element: userData?.payload?.emailVerified ? (
         <Navigate to="/dashboard" />
       ) : (
         <Navigate to="/auth" />
@@ -50,7 +49,7 @@ function Route() {
     },
     {
       path: "/auth",
-      element: isAuthenticated?.emailVerified ? (
+      element: userData?.payload?.emailVerified ? (
         <Navigate to="/dashboard" />
       ) : (
         <AuthLayout />
@@ -72,7 +71,11 @@ function Route() {
     },
     {
       path: "/dashboard",
-      element: isAuthenticated ? <DashboardLayout /> : <Navigate to="/auth" />,
+      element: userData?.payload?.emailVerified ? (
+        <DashboardLayout />
+      ) : (
+        <Navigate to="/auth" />
+      ),
       children: [
         {
           path: "",
