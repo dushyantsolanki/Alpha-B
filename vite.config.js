@@ -5,6 +5,6 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   build: {
-    chunkSizeWarningLimit: 10000, // Set your desired limit in kilobytes
+    chunkSizeWarningLimit: 10000, // Set your desired limit in
   },
 });
