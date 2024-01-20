@@ -15,9 +15,13 @@ import {
 } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 import { authentication } from "../../firebase/";
+import { useDispatch, useSelector, logout } from "../../redux";
 const drawerWidth = 200;
 
 const DashboardLayout = ({ children }) => {
+  const userData = useSelector((state) => state.authReducer.userData);
+  console.log(userData);
+  const dispatch = useDispatch();
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -30,6 +34,7 @@ const DashboardLayout = ({ children }) => {
 
   const handleLogout = async () => {
     await authentication.logout();
+    dispatch(logout());
   };
 
   return (
@@ -61,6 +66,7 @@ const DashboardLayout = ({ children }) => {
             <Avatar
               alt="User"
               src={
+                userData?.payload.photoURL ||
                 "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg?w=740&t=st=1705175078~exp=1705175678~hmac=62501d338b7243623047fc72e9a7ee10ed847d4c78fcf1af5d29528b60aa4f30"
               }
               sx={{ marginRight: "15px" }}
