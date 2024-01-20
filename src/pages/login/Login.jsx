@@ -13,7 +13,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { authentication } from "../../firebase/";
 import { toastConfig, toast } from "../../components/";
 
+import { useDispatch, currentUser } from "../../redux";
+
 function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loginData, setloginData] = useState({
     email: "",
@@ -34,8 +37,12 @@ function Login() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     const response = await authentication.login_with_email_password(loginData);
-    console.log(response);
     if (response.status === true) {
+      const { displayName, email, emailVerified, photoURL, uid } =
+        response.payload;
+      dispatch(
+        currentUser({ displayName, email, emailVerified, photoURL, uid })
+      );
       const isEmailVerify = await authentication.email_varify_checker(
         response.payload?.emailVerified
       );
@@ -52,20 +59,32 @@ function Login() {
 
   const loginWithGoogle = async () => {
     const response = await authentication.login_with_google();
-    if (response.status) {
-      navigate("/dashboard");
+    if (response.status === true) {
+      const { displayName, email, emailVerified, photoURL, uid } =
+        response.payload;
+      dispatch(
+        currentUser({ displayName, email, emailVerified, photoURL, uid })
+      );
     }
   };
   const loginWithTwitter = async () => {
     const response = await authentication.login_with_twitter();
-    if (response.status) {
-      navigate("/dashboard");
+    if (response.status === true) {
+      const { displayName, email, emailVerified, photoURL, uid } =
+        response.payload;
+      dispatch(
+        currentUser({ displayName, email, emailVerified, photoURL, uid })
+      );
     }
   };
   const loginWithFacebook = async () => {
     const response = await authentication.login_with_facebook();
-    if (response.status) {
-      navigate("/dashboard");
+    if (response.status === true) {
+      const { displayName, email, emailVerified, photoURL, uid } =
+        response.payload;
+      dispatch(
+        currentUser({ displayName, email, emailVerified, photoURL, uid })
+      );
     }
   };
   return (
