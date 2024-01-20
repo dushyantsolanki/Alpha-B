@@ -2,11 +2,15 @@ import { config } from "../config/config";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
+  sendPasswordResetEmail,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   TwitterAuthProvider,
   FacebookAuthProvider,
+  signOut,
 } from "firebase/auth";
 
 class Authentication_Firebase {
@@ -30,15 +34,38 @@ class Authentication_Firebase {
         password,
         userName
       );
+      await sendEmailVerification(this.auth.currentUser);
+
       return {
         code: "success",
-        message: `Welcom to Alpha-Blog family ${userName} `,
+        message: `We send the email verification link to your email ${email} `,
         payload: response.user,
         status: true,
       };
     } catch (error) {
       console.log(
         `firebase : authentication : authentication.js : signupUser() : error_message => ${error.message}`
+      );
+      return { code: error?.code, message: error?.message, status: false };
+    }
+  };
+
+  login_with_email_password = async ({ email, password }) => {
+    try {
+      const response = await signInWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      return {
+        code: "success",
+        message: `Login successfull !!! `,
+        payload: response.user,
+        status: true,
+      };
+    } catch (error) {
+      console.log(
+        `firebase : authentication : authentication.js : login_with_email_password() : error_message => ${error.message}`
       );
 
       return { code: error?.code, message: error?.message, status: false };
@@ -95,6 +122,45 @@ class Authentication_Firebase {
         `firebase : authentication : authentication.js : login_with_facebook : error_message => ${error.message}`
       );
 
+      return { code: error?.code, message: error?.message, status: false };
+    }
+  };
+
+  password_reset = async (email) => {
+    try {
+      const response = await sendPasswordResetEmail(this.auth, email);
+      return {
+        code: "success",
+        message: `password reset link send to your ${email} !!! `,
+        payload: response,
+        status: true,
+      };
+    } catch (error) {
+      console.log(
+        `firebase : authentication : authentication.js : password_reset() : error_message => ${error.message}`
+      );
+      return { code: error?.code, message: error?.message, status: false };
+    }
+  };
+
+  //  custom function to varify the user email
+
+  email_varify_checker = async (status) => {
+    if (status === true) {
+      return true;
+    } else {
+      const response = await signOut(this.auth);
+      return !response ? false : 1;
+    }
+  };
+
+  logout = async () => {
+    try {
+      await signOut(this.auth);
+    } catch (error) {
+      console.log(
+        `firebase : authentication : authentication.js : logout() : error_message => ${error.message}`
+      );
       return { code: error?.code, message: error?.message, status: false };
     }
   };
