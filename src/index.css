@@ -13,18 +13,20 @@ body {
   height: 100vh;
 }
 .page_404 {
-  padding: 40px 0;
+  /* padding: 40px 0; */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #ffffff;
   font-family: "Arvo", serif;
 }
 
-.page_404 img {
-  width: 100%;
-}
-
 .four_zero_four_bg {
   background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-  height: 50vh;
+  width: 60vw;
+  height: 60vh;
   background-position: center;
 }
 
