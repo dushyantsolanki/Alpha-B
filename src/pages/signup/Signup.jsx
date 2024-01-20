@@ -8,12 +8,11 @@ import {
   MailIcon,
   AccountCircleIcon,
 } from "../../icon/icon";
-import { toast, toastConfig } from "../../components/";
+import { toast, toastConfig, ConfettiExplosion } from "../../components/";
 import { firestore, authentication } from "../../firebase/";
 
 function Signup() {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     userName: "",
     firstName: "",
@@ -62,6 +61,9 @@ function Signup() {
         signupUserRes.payload
       );
       // At the end form field clear :
+
+      toast.success(`${signupUserRes.message}`, toastConfig);
+
       setFormData({
         userName: "",
         firstName: "",
@@ -71,11 +73,7 @@ function Signup() {
         showPassword: false,
         isValidUser: false,
       });
-      toast.success(`${signupUserRes.message}`, toastConfig);
-      navigate("/auth/login");
-    }
-    //
-    else {
+    } else {
       toast.error(`${signupUserRes.message}`, toastConfig);
     }
   };
@@ -86,6 +84,7 @@ function Signup() {
           {" "}
           Register To Alpha B
         </Typography>
+
         <div className="username full-width">
           <TextField
             required
@@ -198,6 +197,7 @@ function Signup() {
             disabled={formData.isValidUser}
             fullWidth
           >
+            {" "}
             Register
           </Button>
         </div>
