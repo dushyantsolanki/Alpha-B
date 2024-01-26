@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authentication } from "../../firebase/";
-import { toastConfig, toast } from "../../components/";
+import { toast } from "../../components/";
 
 import { useDispatch, currentUser } from "../../redux";
 
@@ -53,7 +53,7 @@ function Login() {
     }
     //
     else {
-      toast.error(`${response.message}`, toastConfig);
+      toast.error(`${response.message}`);
     }
   };
 
