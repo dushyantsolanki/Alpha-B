@@ -2,7 +2,7 @@ import { TextField, InputAdornment, Button, Typography } from "@mui/material";
 import { IconButton, MailIcon } from "../../icon/icon.js";
 import React, { useState } from "react";
 import { authentication } from "../../firebase";
-import { toast, toastConfig } from "../../components/";
+import { toast } from "../../components/";
 
 function ForgotPassword() {
   const [email, setEmail] = useState();
@@ -13,10 +13,10 @@ function ForgotPassword() {
 
     const response = await authentication.password_reset(email);
     if (response.status === true) {
-      toast.success(`${response.message}`, toastConfig);
+      toast.success(`${response.message}`);
       setEmail("");
     } else {
-      toast.error(`${response.message}`, toastConfig);
+      toast.error(`${response.message}`);
     }
     // at the end email input clear
   };
