@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, TextField, Typography, InputAdornment } from "@mui/material";
 import {
@@ -8,7 +8,7 @@ import {
   MailIcon,
   AccountCircleIcon,
 } from "../../icon/icon";
-import { toast, toastConfig, ConfettiExplosion } from "../../components/";
+import { toast } from "../../components/";
 import { firestore, authentication } from "../../firebase/";
 
 function Signup() {
@@ -29,11 +29,12 @@ function Signup() {
       [e.target.name]: e.target.value,
     });
   };
+
   const user = async () => {
     const res = await firestore.retriveDoc(formData);
 
     if (res.status === false) {
-      toast.error(`${res.message}`, toastConfig);
+      toast.error(`${res.message}`);
     } else {
       if (formData.userName.length > 0) {
         setFormData((prev) => ({ ...prev, isValidUser: res.payload }));
@@ -42,14 +43,13 @@ function Signup() {
       }
     }
   };
-  useEffect(() => {
+  useMemo(() => {
     user();
     console.log("inside effect");
   }, [formData.userName]);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-
     // send data to authentication :
     const signupUserRes = await authentication.signupUser(formData);
     if (signupUserRes.status === true) {
@@ -62,7 +62,7 @@ function Signup() {
       );
       // At the end form field clear :
 
-      toast.success(`${signupUserRes.message}`, toastConfig);
+      toast.success(`${signupUserRes.message}`);
 
       setFormData({
         userName: "",
@@ -74,7 +74,7 @@ function Signup() {
         isValidUser: false,
       });
     } else {
-      toast.error(`${signupUserRes.message}`, toastConfig);
+      toast.error(`${signupUserRes.message}`);
     }
   };
   return (
