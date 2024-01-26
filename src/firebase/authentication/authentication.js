@@ -2,6 +2,7 @@ import { config } from "../config/config";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
+  updateProfile,
   sendPasswordResetEmail,
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -35,7 +36,9 @@ class Authentication_Firebase {
         userName
       );
       await sendEmailVerification(this.auth.currentUser);
-
+      updateProfile(this.auth.currentUser, {
+        displayName: userName,
+      });
       return {
         code: "success",
         message: `We send the email verification link to your email ${email} `,
