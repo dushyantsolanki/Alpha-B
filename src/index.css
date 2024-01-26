@@ -1,17 +1,12 @@
-#root {
+:root {
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
 }
-* {
-  margin: 0;
-  padding: 0;
-}
-body {
-  width: 100vw;
-  height: 100vh;
-}
+
 .page_404 {
   /* padding: 40px 0; */
   width: 100vw;
@@ -66,17 +61,9 @@ body {
 /* authLayout styling :  */
 
 .auth-layout-main {
-  /* background-image: url(https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_640.jpg); */
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
   display: flex;
   align-items: center;
   justify-content: space-around;
-  column-gap: 0;
-  width: 100vw;
-  height: 100vh;
 }
 
 /* Signup page styling */
@@ -149,11 +136,61 @@ hr {
   column-gap: 1rem;
 }
 
+/* Profile component styling  */
+
+.profile-main {
+  width: 100%;
+  min-height: 90vh;
+  /* border: 3px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.profile-back {
+  width: 100%;
+  background-image: url("https://source.unsplash.com/random/1920X1080?sunset");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image-profile-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgba(223, 217, 217, 0.975);
+  backdrop-filter: blur(5px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.384);
+}
+.previewImage-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.preview-image-profile {
+  border: 4px solid rgba(150, 143, 143, 0.308);
+}
+.user-profile-information {
+  text-align: center;
+  width: 12rem;
+}
+.username-profile {
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+.width {
+  font-size: medium;
+  margin: 0.5rem 0 0.5rem 0;
+}
 /* Here section use for made layout and design responsive */
 @media (max-width: 375px) {
-  .editor-form {
-    margin-top: -2rem;
-  }
   .fullname {
     flex-direction: column;
     align-items: flex-start;
