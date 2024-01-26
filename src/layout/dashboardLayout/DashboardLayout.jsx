@@ -19,9 +19,9 @@ import { useDispatch, useSelector, logout } from "../../redux";
 const drawerWidth = 200;
 
 const DashboardLayout = ({ children }) => {
-  const userData = useSelector((state) => state.authReducer.userData);
-  console.log(userData);
   const dispatch = useDispatch();
+  const userData = useSelector((state) => state.authReducer.userData.payload);
+
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -66,11 +66,18 @@ const DashboardLayout = ({ children }) => {
             <Avatar
               alt="User"
               src={
-                userData?.payload.photoURL ||
+                userData?.photoURL ||
                 "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671116.jpg?w=740&t=st=1705175078~exp=1705175678~hmac=62501d338b7243623047fc72e9a7ee10ed847d4c78fcf1af5d29528b60aa4f30"
               }
               sx={{ marginRight: "15px" }}
             />
+            <Typography
+              variant="h6"
+              sx={{ marginRight: "15px", fontSize: "0.8em" }}
+              noWrap
+            >
+              {userData?.displayName.toUpperCase()}
+            </Typography>
             <Button variant="outlined" color="inherit" onClick={handleLogout}>
               Logout
             </Button>
@@ -128,6 +135,19 @@ const DashboardLayout = ({ children }) => {
                 Editor
               </Link>
             </ListItem>
+            <ListItem button>
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontSize: "1.2em",
+                }}
+                to="profile"
+              >
+                {" "}
+                Profile
+              </Link>
+            </ListItem>
           </List>
         </div>
       </Drawer>
@@ -143,9 +163,9 @@ const DashboardLayout = ({ children }) => {
           variant="h4"
           component="div"
           style={{
-            border: "2px solid black",
-            minHeight: "85vh",
-            minWidth: "90vw",
+            // border: "2px solid black",
+            minHeight: "90vh",
+            width: "90vw",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
