@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Navigate,
   RouterProvider,
@@ -12,6 +12,7 @@ import {
   Dashboard,
   Editor,
   ForgotPassword,
+  Profile,
 } from "../pages";
 import { authentication } from "../firebase/";
 import { useSelector, useDispatch, currentUser } from "../redux";
@@ -24,9 +25,23 @@ function Route() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(authentication.auth, (user) => {
       if (user) {
-        const { displayName, email, emailVerified, photoURL, uid } = user;
+        const {
+          displayName,
+          email,
+          emailVerified,
+          photoURL,
+          uid,
+          providerData,
+        } = user;
         dispatch(
-          currentUser({ displayName, email, emailVerified, photoURL, uid })
+          currentUser({
+            displayName,
+            email,
+            emailVerified,
+            photoURL,
+            uid,
+            providerData,
+          })
         );
       } else {
         console.log("user logout");
@@ -85,6 +100,7 @@ function Route() {
           path: "editor",
           element: <Editor />,
         },
+        { path: "profile", element: <Profile /> },
       ],
     },
   ]);
