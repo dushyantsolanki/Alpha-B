@@ -1,6 +1,5 @@
-import { toast } from "react-toastify";
-import { toastConfig } from "./react-toastify/toastConfig";
+import { toast, Toaster } from "./hot_toast/hot_toast";
 import { ConfettiExplosion } from "./confetti-explosion/confettiExplosion";
 
 //export component
-export { toastConfig, toast, ConfettiExplosion };
+export { toast, Toaster, ConfettiExplosion };
