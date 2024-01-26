@@ -15,7 +15,29 @@ class Storage {
     this.storage = getStorage(this.app);
   }
 
-  uploadImage = async (file) => {
+  uploadUserImage = async (file) => {
+    try {
+      const storageRef = ref(this.storage, `userProfile/${file.name}`);
+      const snapshot = await uploadBytes(storageRef, file);
+      const imageUrl = await getDownloadURL(snapshot.ref);
+      // console.log(imageUrl);
+
+      return {
+        code: "success",
+        message: "image upload successfully",
+        payload: imageUrl,
+        status: true,
+      };
+    } catch (error) {
+      console.log(
+        `firebase : storage : storage.js : uploadImage : error_message => ${error.message}`
+      );
+
+      return { code: error?.code, message: error?.message, status: false };
+    }
+  };
+
+  uploadPostImage = async (file) => {
     try {
       const storageRef = ref(this.storage, `postImage/${file.name}`);
       const snapshot = await uploadBytes(storageRef, file);
@@ -35,8 +57,6 @@ class Storage {
 
       return { code: error?.code, message: error?.message, status: false };
     }
-
-    //
   };
 }
 
