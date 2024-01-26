@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Editor as TinyEditor } from "@tinymce/tinymce-react";
-import { toast, toastConfig } from "../../components/";
+import { toast } from "../../components/";
 import { Button, Input, TextField } from "@mui/material";
 import { CloudUploadRounded } from "../../icon/icon.js";
 import { firestore, bucket } from "../../firebase/";
+import { useSelector } from "../../redux/";
 
 // tinyMCE configuration object
 const editorConfig = {
@@ -28,6 +29,10 @@ const Editor = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // userId fetch from redux
+
+  const { uid } = useSelector((state) => state.authReducer.userData.payload);
+
   //   // file Upload :
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -35,17 +40,17 @@ const Editor = () => {
 
   const handleUpload = async () => {
     setIsLoading(true);
-    const imageUploadResponse = await bucket.uploadImage(selectedFile);
+    const imageUploadResponse = await bucket.uploadPostImage(selectedFile);
 
     if (imageUploadResponse.status === true) {
       setIsLoading(false);
       setImageUrl(imageUploadResponse.payload);
-      toast.success(`${imageUploadResponse.message}`, toastConfig);
+      toast.success(`${imageUploadResponse.message}`);
     }
     //
     else {
       setIsLoading(false);
-      toast.error(`${imageUploadResponse.message}`, toastConfig);
+      toast.error(`${imageUploadResponse.message}`);
     }
     setSelectedFile(null);
   };
@@ -62,6 +67,7 @@ const Editor = () => {
         tags: tagArr,
         timestamp,
         imageUrl,
+        authorId: uid,
       });
       console.log(firestoreUploadDataResponse);
       if (firestoreUploadDataResponse.status === true) {
@@ -74,16 +80,16 @@ const Editor = () => {
         setImageUrl("");
         setTimestamp("");
         setTitle("");
-        toast.success(`${firestoreUploadDataResponse.message}`, toastConfig);
+        toast.success(`${firestoreUploadDataResponse.message}`);
       }
       //
       else {
-        toast.error(`${firestoreUploadDataResponse.message}`, toastConfig);
+        toast.error(`${firestoreUploadDataResponse.message}`);
       }
     }
     //
     else {
-      toast.error(`Content and image is required `, toastConfig);
+      toast.error(`Content and image is required `);
     }
     setIsLoading(false);
   };
@@ -143,7 +149,7 @@ const Editor = () => {
                 className="upload-image"
                 src={
                   imageUrl ||
-                  "https://img.freepik.com/vecteurs-libre/illustration-du-concept-telechargement-image_114360-996.jpg?w=740&t=st=1705302242~exp=1705302842~hmac=f6699cab996d453ffc5a59e3ae50edf91b35040a0da8177dac248e1c10d6196a"
+                  "https://user-images.githubusercontent.com/6290720/91559755-9d6e8c00-e973-11ea-9bde-4b60c89f441a.png"
                 }
                 alt="Preview Image Logo"
               />
