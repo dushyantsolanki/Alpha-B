@@ -4,7 +4,7 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import { DashboardLayout, AuthLayout } from "../layout";
+import { DashboardLayout, AuthLayout, HomeLayout } from "../layout";
 import {
   ErrorPage,
   Login,
@@ -13,6 +13,7 @@ import {
   Editor,
   ForgotPassword,
   Profile,
+  Blogs,
 } from "../pages";
 import { authentication } from "../firebase/";
 import { useSelector, useDispatch, currentUser } from "../redux";
@@ -57,7 +58,7 @@ function Route() {
     {
       path: "/",
       element: userData?.payload?.emailVerified ? (
-        <Navigate to="/dashboard" />
+        <Navigate to="/home" />
       ) : (
         <Navigate to="/auth" />
       ),
@@ -65,7 +66,7 @@ function Route() {
     {
       path: "/auth",
       element: userData?.payload?.emailVerified ? (
-        <Navigate to="/dashboard" />
+        <Navigate to="/home" />
       ) : (
         <AuthLayout />
       ),
@@ -83,6 +84,17 @@ function Route() {
           element: <ForgotPassword />,
         },
       ],
+    },
+
+    {
+      path: "/home",
+      element: userData?.payload?.emailVerified ? (
+        <HomeLayout />
+      ) : (
+        <Navigate to="/auth" />
+      ),
+
+      children: [{ path: "", element: <Blogs /> }],
     },
     {
       path: "/dashboard",

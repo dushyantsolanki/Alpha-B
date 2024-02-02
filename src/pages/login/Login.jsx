@@ -48,7 +48,7 @@ function Login() {
       );
 
       isEmailVerify
-        ? navigate("/dashboard")
+        ? navigate("/home")
         : toast.error(`Your email is not verify `);
     }
     //

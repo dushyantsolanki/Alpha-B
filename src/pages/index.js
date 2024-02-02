@@ -5,4 +5,14 @@ import Dashboard from "./dashboard/Dashboard";
 import Editor from "./editor/Editor";
 import ForgotPassword from "./forgot-password/ForgotPassword.jsx";
 import Profile from "./profile/Profile";
-export { Login, Signup, Dashboard, ErrorPage, Editor, ForgotPassword, Profile };
+import Blogs from "./blog/Blogs.jsx";
+export {
+  Login,
+  Signup,
+  Dashboard,
+  ErrorPage,
+  Editor,
+  ForgotPassword,
+  Profile,
+  Blogs,
+};
