@@ -61,10 +61,14 @@ class Firebase_Firestore {
   receveDoc = async () => {
     try {
       const querySnapshot = await getDocs(collection(this.db, "posts"));
+      const documents = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       return {
         code: "success",
         message: "Data sent successfully",
-        payload: querySnapshot,
+        payload: documents,
         status: true,
       };
     } catch (error) {
