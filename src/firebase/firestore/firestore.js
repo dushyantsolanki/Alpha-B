@@ -4,6 +4,7 @@ import {
   collection,
   addDoc,
   setDoc,
+  getDoc,
   getDocs,
   query,
   where,
@@ -157,7 +158,24 @@ class Firebase_Firestore {
       return { code: error?.code, message: error?.message, status: false };
     }
   };
+  fatchFullBlog = async (blogId) => {
+    try {
+      const querySnapshot = await getDoc(doc(this.db, "posts", blogId));
 
+      return {
+        code: "success",
+        message: "Data sent successfully",
+        payload: querySnapshot.data(),
+        status: true,
+      };
+    } catch (error) {
+      console.log(
+        `firebase : firestore : firestore.js : receveDoc : error_message => ${error.message}`
+      );
+
+      return { code: error?.code, message: error?.message, status: false };
+    }
+  };
   updateRegisterDoc = async (
     { userName, firstName, lastName, imageUrl },
     uid,
