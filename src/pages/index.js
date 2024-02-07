@@ -6,6 +6,8 @@ import Editor from "./editor/Editor";
 import ForgotPassword from "./forgot-password/ForgotPassword.jsx";
 import Profile from "./profile/Profile";
 import Blogs from "./blog/Blogs.jsx";
+import FullBlog from "./blog/FullBlog.jsx";
+import SwiperCompo from "./swiper/SwiperCompo";
 export {
   Login,
   Signup,
@@ -15,4 +17,6 @@ export {
   ForgotPassword,
   Profile,
   Blogs,
+  SwiperCompo,
+  FullBlog,
 };
