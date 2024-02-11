@@ -6,9 +6,7 @@ function HomeLayout() {
   return (
     <>
       <div className="home-layout">
-        <div className="swiper">
-          <SwiperCompo />
-        </div>
+        
         <button
           onClick={() => {
             navigate("/dashboard/editor");
