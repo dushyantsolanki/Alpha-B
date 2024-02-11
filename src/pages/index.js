@@ -3,10 +3,10 @@ import Signup from "./signup/Signup";
 import ErrorPage from "./404 page/ErrorPage";
 import Dashboard from "./dashboard/Dashboard";
 import Editor from "./editor/Editor";
-import ForgotPassword from "./forgot-password/ForgotPassword.jsx";
+import ForgotPassword from "./forgot-password/ForgotPassword";
 import Profile from "./profile/Profile";
-import Blogs from "./blog/Blogs.jsx";
-import FullBlog from "./blog/FullBlog.jsx";
+import Blogs from "./blog/Blogs";
+import FullBlog from "./blog/FullBlog";
 import SwiperCompo from "./swiper/SwiperCompo";
 export {
   Login,
