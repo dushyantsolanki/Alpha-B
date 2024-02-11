@@ -14,7 +14,7 @@ function SwiperCompo() {
     <>
       <div
         className="swiper-main-component "
-        style={{ width: "100vw", height: "90vh" }}
+        style={{ width: "100vw", height: "70vh" }}
       >
         <Swiper
           direction={"vertical"}
