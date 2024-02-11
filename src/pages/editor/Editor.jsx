@@ -114,6 +114,7 @@ const Editor = () => {
 
           <div className="tinyMce-editor">
             <TinyEditor
+              apiKey="xgnn79cw0ykhybh79jqwz553bic3fsx0hdfm69ihuh3f17cf"
               init={editorConfig}
               onEditorChange={(e) => {
                 setContent(e);

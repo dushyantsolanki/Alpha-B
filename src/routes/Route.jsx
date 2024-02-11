@@ -14,6 +14,7 @@ import {
   ForgotPassword,
   Profile,
   Blogs,
+  FullBlog,
 } from "../pages";
 import { authentication } from "../firebase/";
 import { useSelector, useDispatch, currentUser } from "../redux";
@@ -94,7 +95,13 @@ function Route() {
         <Navigate to="/auth" />
       ),
 
-      children: [{ path: "", element: <Blogs /> }],
+      children: [
+        { path: "", element: <Blogs /> },
+        {
+          path: "/home/blogs/:blogId",
+          element: <FullBlog />,
+        },
+      ],
     },
     {
       path: "/dashboard",

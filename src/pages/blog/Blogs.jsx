@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import {
+  CardActionArea,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
+import { SwiperCompo } from "../index";
 import { firestore } from "../../firebase/";
 
 function Blogs() {
@@ -22,6 +25,7 @@ function Blogs() {
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <>
       <div
@@ -29,11 +33,12 @@ function Blogs() {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-start",
+          justifyContent: "center",
           gap: "1rem",
           flexWrap: "wrap",
         }}
       >
+        <SwiperCompo />
         {data?.map((html, index) => {
           return (
             <Card sx={{ maxWidth: 345 }} key={index}>
