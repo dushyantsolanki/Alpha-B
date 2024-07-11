@@ -5,9 +5,12 @@ import Dashboard from "./dashboard/Dashboard";
 import Editor from "./editor/Editor";
 import ForgotPassword from "./forgot-password/ForgotPassword";
 import Profile from "./profile/Profile";
-import Blogs from "./blog/Blogs";
-import FullBlog from "./blog/FullBlog";
-import SwiperCompo from "./swiper/SwiperCompo";
+import Items from "./items/Items";
+import FullItem from "./Items/FullItem";
+import Home from "./home/Home";
+import Cart from "./cart page/Cart";
+import Contact from "./contact page/Contact";
+import Payment from "./payment page/Payment";
 export {
   Login,
   Signup,
@@ -16,7 +19,10 @@ export {
   Editor,
   ForgotPassword,
   Profile,
-  Blogs,
-  SwiperCompo,
-  FullBlog,
+  Items,
+  FullItem,
+  Home,
+  Cart,
+  Contact,
+  Payment,
 };

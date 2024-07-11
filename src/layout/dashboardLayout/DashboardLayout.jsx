@@ -54,7 +54,7 @@ const DashboardLayout = ({ children }) => {
             {openDrawer ? <ChevronLeftIcon /> : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" noWrap>
-            Alpha Bee
+            BioGroveMarket
           </Typography>
           <div
             style={{
@@ -71,6 +71,23 @@ const DashboardLayout = ({ children }) => {
               }
               sx={{ marginRight: "15px" }}
             />
+            <Typography
+              variant="h6"
+              sx={{ marginRight: "15px", fontSize: "0.8em" }}
+              noWrap
+            >
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontSize: "1.2em",
+                }}
+                to="/home"
+              >
+                {" "}
+                <Button> Home</Button>
+              </Link>
+            </Typography>
             <Typography
               variant="h6"
               sx={{ marginRight: "15px", fontSize: "0.8em" }}
@@ -109,7 +126,7 @@ const DashboardLayout = ({ children }) => {
           </div>
           <Divider />
           <List>
-            <ListItem button>
+            {/* <ListItem button>
               <Link
                 style={{
                   textDecoration: "none",
@@ -121,7 +138,7 @@ const DashboardLayout = ({ children }) => {
                 {" "}
                 Dashboard
               </Link>
-            </ListItem>
+            </ListItem> */}
             <ListItem button>
               <Link
                 style={{

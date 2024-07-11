@@ -25,6 +25,7 @@ const Editor = () => {
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [tags, setTags] = useState("");
+  const [price, setPrice] = useState("");
   const [timestamp, setTimestamp] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +68,7 @@ const Editor = () => {
         tags: tagArr,
         timestamp,
         imageUrl,
+        price,
         authorId: uid,
       });
       console.log(firestoreUploadDataResponse);
@@ -80,6 +82,7 @@ const Editor = () => {
         setImageUrl("");
         setTimestamp("");
         setTitle("");
+        setPrice("");
         toast.success(`${firestoreUploadDataResponse.message}`);
       }
       //
@@ -102,7 +105,7 @@ const Editor = () => {
           <TextField
             required
             type="text"
-            label="Title"
+            label="Product Name"
             name="title"
             fullWidth
             value={title}
@@ -131,6 +134,17 @@ const Editor = () => {
             fullWidth
             onChange={(e) => {
               setTags(e.target.value);
+            }}
+          />
+          <TextField
+            required
+            type="text"
+            label="Price"
+            name="Price"
+            fullWidth
+            value={price}
+            onChange={(e) => {
+              setPrice(e.target.value);
             }}
           />
           <TextField

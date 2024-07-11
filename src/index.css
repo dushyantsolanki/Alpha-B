@@ -1,10 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  min-width: 100vw;
+  min-width: 98vw;
   min-height: 100vh;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+* {
+  margin: 0;
+  padding: 0;
 }
 
 .page_404 {
@@ -99,7 +107,7 @@
   border: 3.5px solid rgba(0, 0, 0, 0.119);
   border-radius: 1rem;
   padding: 1rem 1rem 2rem 1rem;
-  width: 28em;
+  width: 97%;
   color: rgba(38, 52, 186, 0.886);
 }
 .login-text {
@@ -196,7 +204,7 @@ hr {
 }
 
 .swiper-slide {
-  text-align: center; 
+  text-align: center;
   font-size: 18px;
   background: #fff;
 
@@ -206,12 +214,124 @@ hr {
   align-items: center;
 }
 
+.home-layout {
+  min-height: 100vh;
+}
 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+header .navbar {
+  min-width: 98.9vw;
+  padding: 0 1rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(4, 85, 58, 0.849);
+  color: white;
+  font-family: sans-serif;
+  position: relative;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.org-logo > h1 {
+  font-size: x-large;
+}
+
+header > .navbar > .nav-content-list > nav > ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+}
+
+header > .navbar > .nav-content-list > nav > ul > li {
+  margin: 0.5rem 0rem;
+  padding: 0.5rem 0;
+  transition: all 200ms linear;
+  /* background-color: rgba(0, 0, 0, 0.048) */
+}
+
+header > .navbar > .nav-content-list > nav > ul > li:hover {
+  border-bottom: 1.2px solid white;
+  cursor: pointer;
+}
+
+#responsive-right-nav {
+  position: absolute;
+  width: 100vw;
+  display: none;
+  font-family: sans-serif;
+  color: white;
+  background-color: rgba(4, 85, 58, 0.925);
+}
+
+.res-nav > ul {
+  height: 18rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.res-nav > ul > li {
+  margin: 1rem 0;
+  list-style: none;
+}
+
+.res-nav > ul > li:hover {
+  padding: 0.3rem;
+  border-bottom: 3px solid white;
+}
+
+.btn {
+  display: none;
+}
+
+#closeHambarger {
+  display: none;
+}
+
+.hero-section {
+  width: 100vw;
+  height: 80vh;
+  background-image: url("https://preview.redd.it/a-beautiful-gaze-at-the-amazing-farm-land-ai-generated-v0-mh36ahvit0ec1.png?width=1080&crop=smart&auto=webp&s=77f0993c7804a44eb6425d5bb39865561fbdd2b4");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.cart-item img:hover {
+  cursor: pointer;
+}
+.full-blog-page-main {
+  width: 70vw;
+  padding: 3rem;
+  gap: 3rem;
+  display: flex;
+  align-items: flex-start;
+
+  justify-content: flex-start;
+}
+@media (max-width: 950px) {
+  .btn {
+    display: block;
+  }
+
+  header > .navbar > .nav-content-list > nav > ul {
+    display: none;
+  }
+}
+
 /* Here section use for made layout and design responsive */
 @media (max-width: 375px) {
   .fullname {
@@ -220,5 +340,8 @@ hr {
   }
   .half-width {
     width: 100%;
+  }
+  #responsive-right-nav {
+    display: none !important;
   }
 }

@@ -91,7 +91,7 @@ function Login() {
     <div className="login-page-main">
       <Typography variant="h3" style={{ margin: "0.1rem 0 2rem 0 " }}>
         {" "}
-        Login To Alpha B
+        BioGroveMarket
       </Typography>
       <form className="login-form" onSubmit={onSubmitHandler}>
         <div className="login-email full-width">

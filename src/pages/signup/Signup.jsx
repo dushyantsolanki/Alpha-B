@@ -82,7 +82,7 @@ function Signup() {
       <form className="signup-form" onSubmit={onSubmitHandler}>
         <Typography variant="h3" style={{ marginBottom: "2rem" }}>
           {" "}
-          Register To Alpha B
+          Register To BioGroveMarket
         </Typography>
 
         <div className="username full-width">

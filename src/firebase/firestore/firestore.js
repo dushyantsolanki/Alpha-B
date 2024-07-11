@@ -8,6 +8,7 @@ import {
   getDocs,
   query,
   where,
+  FieldValue,
   doc,
 } from "firebase/firestore";
 import {
@@ -33,6 +34,7 @@ class Firebase_Firestore {
     imageUrl,
     tags,
     timestamp,
+    price,
     authorId = "123456789",
   }) => {
     try {
@@ -40,6 +42,7 @@ class Firebase_Firestore {
         authorId,
         content,
         imageUrl,
+        price,
         tags,
         timestamp,
         title,
@@ -53,6 +56,30 @@ class Firebase_Firestore {
     } catch (error) {
       console.log(
         `firebase : firestore : firestore.js : sendDoc : error_message => ${error.message}`
+      );
+
+      return { code: error?.code, message: error?.message, status: false };
+    }
+  };
+
+  sendConatactDoc = async (fullName, company, email, phone, message) => {
+    try {
+      const docRef = await addDoc(collection(this.db, "contacts"), {
+        fullName,
+        company,
+        email,
+        phone,
+        message,
+      });
+      return {
+        code: "success",
+        message: " Thanks for contact.",
+        payload: docRef,
+        status: true,
+      };
+    } catch (error) {
+      console.log(
+        `firebase : firestore : firestore.js : sendConatactDoc : error_message => ${error.message}`
       );
 
       return { code: error?.code, message: error?.message, status: false };
@@ -213,6 +240,26 @@ class Firebase_Firestore {
       );
 
       return { code: error?.code, message: error?.message, status: false };
+    }
+  };
+
+  updateLikeInPost = async (postId) => {
+    try {
+      const updatePostPath = this.db.collection("post").doc(`${postId}`);
+      const result = await updatePostPath.update({
+        likes: FieldValue.arrayUnion(`${postId}`),
+      });
+
+      return {
+        code: "success",
+        message: "Data was updated successfully",
+        payload: result,
+        status: true,
+      };
+    } catch (error) {
+      console.log(
+        `firebase : firestore : firestore.js : updateLikeInPost : error_message => ${error.message}`
+      );
     }
   };
 }

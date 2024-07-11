@@ -13,8 +13,12 @@ import {
   Editor,
   ForgotPassword,
   Profile,
-  Blogs,
-  FullBlog,
+  Items,
+  FullItem,
+  Home,
+  Cart,
+  Contact,
+  Payment,
 } from "../pages";
 import { authentication } from "../firebase/";
 import { useSelector, useDispatch, currentUser } from "../redux";
@@ -56,6 +60,7 @@ function Route() {
 
   const router = createBrowserRouter([
     { path: "*", element: <ErrorPage /> },
+
     {
       path: "/",
       element: userData?.payload?.emailVerified ? (
@@ -96,11 +101,20 @@ function Route() {
       ),
 
       children: [
-        { path: "", element: <Blogs /> },
+        { path: "", element: <Home /> },
         {
-          path: "/home/blogs/:blogId",
-          element: <FullBlog />,
+          path: "items/:ItemId",
+          element: <FullItem />,
         },
+        {
+          path: "cart",
+          element: <Cart />,
+        },
+        {
+          path: "contact",
+          element: <Contact />,
+        },
+        { path: "payment", element: <Payment /> },
       ],
     },
     {
@@ -123,6 +137,7 @@ function Route() {
       ],
     },
   ]);
+  
   return <RouterProvider router={router} />;
 }
 export default Route;
