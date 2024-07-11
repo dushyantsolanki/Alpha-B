@@ -54,7 +54,7 @@ const DashboardLayout = ({ children }) => {
             {openDrawer ? <ChevronLeftIcon /> : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" noWrap>
-            BioGroveMarket
+            Alpha Bee
           </Typography>
           <div
             style={{

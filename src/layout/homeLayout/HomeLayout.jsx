@@ -33,7 +33,7 @@ function HomeLayout() {
           className="rights"
           style={{ textAlign: "center", backgroundColor: "green" }}
         >
-          All Right Reserve By BioGroveMarket
+          All Right Reserve By Alpha Bee
         </div> */}
       </div>
     </>
