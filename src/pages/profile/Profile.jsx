@@ -119,10 +119,10 @@ function Profile() {
   };
 
   return false ? (
-    <h1>You Can not change or view your profile.</h1>
+    <h1 data-aos="zoom-in">You Can not change or view your profile.</h1>
   ) : (
     <>
-      <div className="profile-main">
+      <div className="profile-main" data-aos="zoom-in">
         <div className="profile-back">
           <div className="image-profile-section">
             <div className="image-profile">

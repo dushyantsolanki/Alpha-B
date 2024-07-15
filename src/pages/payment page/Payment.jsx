@@ -7,7 +7,7 @@ const Payment = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div class="font-[sans-serif] bg-white p-4">
+      <div class="font-[sans-serif] bg-white p-4" data-aos="zoom-in">
         <div class="lg:max-w-7xl max-w-xl mx-auto">
           <div class="grid lg:grid-cols-3 gap-10">
             <div class="lg:col-span-2 max-lg:order-1">

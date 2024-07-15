@@ -4,9 +4,9 @@ import Items from "../items/Items";
 const Home = () => {
   return (
     <>
-      <div className="hero-section"></div>
+      <div className="hero-section" data-aos="zoom-in"></div>
       <hr />
-      <Items />
+      <Items  />
     </>
   );
 };

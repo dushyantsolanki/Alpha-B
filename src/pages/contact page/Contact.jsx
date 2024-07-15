@@ -11,7 +11,7 @@ const Contact = () => {
 
   return (
     <>
-      <div className="main-page-contact">
+      <div className="main-page-contact" data-aos="zoom-in">
         <div class="contact-1 py-4 md:py-12">
           <div class="container mx-auto px-4">
             <div class="xl:flex -mx-4">

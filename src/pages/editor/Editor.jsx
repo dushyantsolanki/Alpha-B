@@ -98,7 +98,7 @@ const Editor = () => {
   };
 
   return (
-    <div className="editor-form">
+    <div className="editor-form" data-aos="zoom-in">
       <div className="left ">
         {" "}
         <form className="editor-form" onSubmit={handleSubmit}>

@@ -3,9 +3,11 @@ import { IconButton, MailIcon } from "../../icon/icon.js";
 import React, { useState } from "react";
 import { authentication } from "../../firebase";
 import { toast } from "../../components/";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
   const [email, setEmail] = useState();
+  const navigate = useNavigate();
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -21,7 +23,7 @@ function ForgotPassword() {
     // at the end email input clear
   };
   return (
-    <div className="forgot-password-main">
+    <div className="forgot-password-main" data-aos="zoom-in">
       <form onSubmit={onSubmitHandler}>
         <Typography variant="h4">Forgot Password</Typography>
         <TextField
@@ -47,6 +49,16 @@ function ForgotPassword() {
         />
         <Button type="submit" variant="outlined" disabled={!email}>
           Send Link
+        </Button>
+        <Button
+          sx={{ marginLeft: "2rem" }}
+          type="submit"
+          variant="outlined"
+          onClick={() => {
+            navigate("/auth/login");
+          }}
+        >
+          Login
         </Button>
       </form>
     </div>

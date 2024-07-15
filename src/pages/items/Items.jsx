@@ -43,6 +43,7 @@ function Items() {
         {data?.map((html, index) => {
           return (
             <div
+              data-aos="zoom-in"
               key={index + 1}
               className="cart-item"
               style={{

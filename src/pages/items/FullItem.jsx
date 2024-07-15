@@ -35,6 +35,7 @@ function FullItem() {
     <>
       <div
         className="full-page-full"
+        data-aos="zoom-in"
         style={{
           width: "100vw",
           height: "100vh",

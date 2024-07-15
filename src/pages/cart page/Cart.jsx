@@ -29,6 +29,7 @@ const Cart = () => {
   return (
     <div
       className="main-blog-page"
+      data-aos="zoom-in"
       style={{
         display: "flex",
         alignItems: "center",
@@ -49,6 +50,7 @@ const Cart = () => {
         return (
           <div
             className="cart-item"
+            data-aos="zoom-in"
             style={{
               width: "350px",
               height: "490px",

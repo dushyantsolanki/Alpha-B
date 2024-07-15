@@ -5,7 +5,7 @@ function HomeLayout() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="home-layout">
+      <div className="home-layout" >
         <Navbar />
 
         <div className="item-blogs">

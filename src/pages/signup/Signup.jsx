@@ -78,7 +78,7 @@ function Signup() {
     }
   };
   return (
-    <div className="signup-page">
+    <div className="signup-page" data-aos="zoom-in">
       <form className="signup-form" onSubmit={onSubmitHandler}>
         <Typography variant="h3" style={{ marginBottom: "2rem" }}>
           {" "}

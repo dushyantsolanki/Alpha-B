@@ -34,7 +34,7 @@ const Navbar = () => {
         <header>
           <div className="navbar">
             <div className="org-logo">
-              <h1> BioGroveMarket</h1>
+              <h1> Alpha Bee</h1>
             </div>
             {/* <div className="search-btn-section" style={{ display: "block" }}>
               <input
