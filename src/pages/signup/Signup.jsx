@@ -1,6 +1,13 @@
 import React, { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, TextField, Typography, InputAdornment } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Typography,
+  InputAdornment,
+  Grid,
+  Box,
+} from "@mui/material";
 import {
   IconButton,
   VisibilityIcon,
@@ -78,14 +85,55 @@ function Signup() {
     }
   };
   return (
-    <div className="signup-page" data-aos="zoom-in">
-      <form className="signup-form" onSubmit={onSubmitHandler}>
-        <Typography variant="h3" style={{ marginBottom: "2rem" }}>
-          {" "}
-          Register To Alpha Bee
-        </Typography>
+    <form
+      onSubmit={onSubmitHandler}
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+      data-aos="zoom-in"
+    >
+      <Grid
+        container
+        sx={{
+          height: {
+            xs: "95%",
+            sm: "95%",
+            md: "95%",
+          },
+          padding: "1rem",
+          display: "felx",
+          alineItems: "center",
+          justifyContent: "center",
+        }}
+        md={8}
+        sm={12}
+        xs={12}
+      >
+        <Grid item md={12} sm={12} xs={12}>
+          <Typography
+            component="h1"
+            variant="h1"
+            sx={{
+              margin: {
+                xs: "0rem 0 1rem 0",
+                sm: "0rem 0 2rem 0",
+                md: "2rem 0 1rem 0",
+              },
+              fontSize: {
+                xs: "2.5rem",
+                md: "5rem",
+                sm: "3.5rem",
+              },
+            }}
+          >
+            Welcome{" "}
+          </Typography>
+        </Grid>
 
-        <div className="username full-width">
+        <Grid item md={12} sm={12} xs={12}>
           <TextField
             required
             type="text"
@@ -108,34 +156,44 @@ function Signup() {
               formData.isValidUser && `${formData.userName} is already use`
             }
           />
-        </div>
-        <div className="fullname full-width">
-          <div className="firstName half-width">
-            {" "}
-            <TextField
-              required
-              type="text"
-              placeholder="First Name"
-              name="firstName"
-              fullWidth
-              value={formData.firstName}
-              onChange={onChangeHadler}
-            />
-          </div>
-          <div className="lastName half-width ">
-            {" "}
-            <TextField
-              required
-              type="text"
-              placeholder="Last Name"
-              name="lastName"
-              fullWidth
-              value={formData.lastName}
-              onChange={onChangeHadler}
-            />
-          </div>
-        </div>
-        <div className="email full-width">
+        </Grid>
+        <Grid item md={6} sm={12} xs={12}>
+          <TextField
+            required
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            fullWidth
+            value={formData.firstName}
+            onChange={onChangeHadler}
+            sx={{
+              padding: {
+                sm: "1rem 0rem 1rem 0rem",
+                md: "0 1rem 0 0",
+                xs: "1rem 0rem 1rem 0rem",
+              },
+            }}
+          />
+        </Grid>
+        <Grid item md={6} sm={12} xs={12}>
+          <TextField
+            required
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            fullWidth
+            value={formData.lastName}
+            onChange={onChangeHadler}
+            sx={{
+              padding: {
+                sm: "1rem 0rem 1rem 0rem",
+                md: "0 1rem 0 0",
+                xs: "1rem 0rem 1rem 0rem",
+              },
+            }}
+          />
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
           <TextField
             required
             id="outline-required"
@@ -144,6 +202,13 @@ function Signup() {
             name="email"
             fullWidth
             value={formData.email}
+            sx={{
+              padding: {
+                sm: "1rem 0rem 1rem 0rem",
+                md: "0 1rem 0 0",
+                xs: "1rem 0rem 1rem 0rem",
+              },
+            }}
             onChange={onChangeHadler}
             InputProps={{
               endAdornment: (
@@ -155,16 +220,21 @@ function Signup() {
               ),
             }}
           />
-        </div>
-
-        <div className="password full-width">
-          {" "}
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
           <TextField
             required
             type={formData.showPassword ? "text" : "password"}
             placeholder="Password"
             name="password"
             fullWidth
+            sx={{
+              padding: {
+                sm: "1rem 0rem 1rem 0rem",
+                md: "0 1rem 0 0",
+                xs: "1rem  0rem 1rem 0rem",
+              },
+            }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -189,8 +259,8 @@ function Signup() {
             value={formData.password}
             onChange={onChangeHadler}
           />
-        </div>
-        <div className="register-btn full-width">
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
           <Button
             type="submit"
             variant="contained"
@@ -199,10 +269,20 @@ function Signup() {
           >
             {" "}
             Register
-          </Button>
-        </div>
-        <div className="login-text">
-          <Typography component="div">
+          </Button>{" "}
+        </Grid>
+
+        <Grid item sm={12} xs={12}>
+          <Typography
+            component="div"
+            sx={{
+              padding: {
+                sm: "1rem 0rem 1rem 0rem",
+                md: "0 1rem 0 0",
+                xs: "1rem 1rem 1rem 1rem",
+              },
+            }}
+          >
             {" "}
             <p style={{ fontSize: "13px" }}>
               You have a already registered ?{" "}
@@ -215,9 +295,9 @@ function Signup() {
               </span>
             </p>{" "}
           </Typography>
-        </div>
-      </form>
-    </div>
+        </Grid>
+      </Grid>
+    </form>
   );
 }
 export default Signup;

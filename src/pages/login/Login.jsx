@@ -1,4 +1,10 @@
-import { TextField, InputAdornment, Button, Typography } from "@mui/material";
+import {
+  TextField,
+  InputAdornment,
+  Button,
+  Typography,
+  Grid,
+} from "@mui/material";
 import {
   IconButton,
   VisibilityIcon,
@@ -88,13 +94,41 @@ function Login() {
     }
   };
   return (
-    <div className="login-page-main" data-aos="zoom-in">
-      <Typography variant="h3" style={{ margin: "0.1rem 0 2rem 0 " }}>
-        {" "}
-        Alpha Bee
-      </Typography>
-      <form className="login-form" onSubmit={onSubmitHandler}>
-        <div className="login-email full-width">
+    <form
+      onSubmit={onSubmitHandler}
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+      }}
+      data-aos="zoom-in"
+    >
+      <Grid
+        container
+        sx={{
+          height: {
+            xs: "95%",
+            sm: "95%",
+            md: "95%",
+          },
+          padding: "1rem",
+          display: "felx",
+          alineItems: "center",
+          justifyContent: "center",
+          alignContent: "space-evenly",
+        }}
+        md={8}
+        sm={12}
+        xs={12}
+      >
+        <Grid item md={12} sm={12} xs={12}>
+          {" "}
+          <Typography variant="h3" style={{ margin: "0.1rem 0 2rem 0 " }}>
+            Alpha Bee
+          </Typography>
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
           <TextField
             required
             type="email"
@@ -114,8 +148,8 @@ function Login() {
               ),
             }}
           />
-        </div>
-        <div className="login-password full-width">
+        </Grid>
+        <Grid item md={12} xs={12} sm={12}>
           <TextField
             required
             type={loginData.showPassword ? "text" : "password"}
@@ -146,8 +180,76 @@ function Login() {
             value={loginData.password}
             onChange={onChangeHandler}
           />
-        </div>
-        <div className="forgot-password ">
+        </Grid>
+
+        <Grid
+          item
+          md={5}
+          xs={12}
+          sm={12}
+          sx={{ margin: { md: "0 2rem 0 2rem", xs: "0", sm: "0" } }}
+        >
+          <Button type="submit" variant="contained" fullWidth>
+            Log In
+          </Button>
+        </Grid>
+        <Grid md={5} xs={12} sm={12}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={() => {
+              navigate("/auth/");
+            }}
+          >
+            {" "}
+            Signup
+          </Button>
+        </Grid>
+        <Grid
+          container
+          sm={12}
+          md={12}
+          xs={12}
+          sx={{
+            display: "flex",
+            alineItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <Grid item md={4}>
+            {" "}
+            <Button
+              variant="outlined"
+              color="primary"
+              startIcon={<FacebookIcon />}
+              onClick={loginWithFacebook}
+            >
+              Facebook
+            </Button>
+          </Grid>
+          <Grid item md={4}>
+            {" "}
+            <Button
+              variant="outlined"
+              color="primary"
+              startIcon={<GoogleIcon />}
+              onClick={loginWithGoogle}
+            >
+              Google
+            </Button>
+          </Grid>
+          <Grid item md={4}>
+            <Button
+              variant="outlined"
+              color="primary"
+              startIcon={<TwitterIcon />}
+              onClick={loginWithTwitter}
+            >
+              Twitter
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} md={12} sm={12}>
           <Typography>
             <Button
               onClick={() => {
@@ -160,64 +262,9 @@ function Login() {
               Forgot Password ?
             </Button>
           </Typography>
-        </div>
-        <div className="login-btn full-width">
-          <Button type="submit" variant="contained" fullWidth>
-            Log In
-          </Button>
-        </div>
-      </form>
-      <div className=" login-text full-width">
-        <Typography component="div">
-          {" "}
-          <p style={{ fontSize: "13px" }}>
-            You have a already register ?{" "}
-            <span>
-              {" "}
-              <Link to="/auth/" style={{ textDecoration: "none" }}>
-                {" "}
-                Register
-              </Link>
-            </span>
-          </p>{" "}
-        </Typography>
-      </div>
-      <div className="login-social">
-        <hr />
-        <div className="social-btn">
-          <div className="login-google ">
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<GoogleIcon />}
-              onClick={loginWithGoogle}
-            >
-              Google
-            </Button>
-          </div>
-          <div className="login-twitter ">
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<TwitterIcon />}
-              onClick={loginWithTwitter}
-            >
-              Twitter
-            </Button>
-          </div>
-          <div className="login-facebook">
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<FacebookIcon />}
-              onClick={loginWithFacebook}
-            >
-              Facebook
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
+        </Grid>
+      </Grid>
+    </form>
   );
 }
 
