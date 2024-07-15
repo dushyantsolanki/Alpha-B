@@ -36,6 +36,7 @@ function AuthLayout() {
             alignItems: "center",
             alignContent: "center",
             height: {
+              xs: "100%",
               sm: "100%",
               md: "90%",
             },

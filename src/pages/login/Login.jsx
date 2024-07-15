@@ -108,12 +108,12 @@ function Login() {
         container
         sx={{
           height: {
-            xs: "95%",
-            sm: "95%",
+            xs: "100%",
+            sm: "100%",
             md: "95%",
           },
           padding: "1rem",
-          display: "felx",
+          display: "flex",
           alineItems: "center",
           justifyContent: "center",
           alignContent: "space-evenly",
@@ -128,6 +128,7 @@ function Login() {
             Alpha Bee
           </Typography>
         </Grid>
+
         <Grid item md={12} sm={12} xs={12}>
           <TextField
             required
@@ -149,6 +150,7 @@ function Login() {
             }}
           />
         </Grid>
+        
         <Grid item md={12} xs={12} sm={12}>
           <TextField
             required
