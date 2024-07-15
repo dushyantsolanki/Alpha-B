@@ -119,7 +119,7 @@ function Signup() {
             sx={{
               margin: {
                 xs: "0rem 0 1rem 0",
-                sm: "0rem 0 2rem 0",
+                sm: "0rem 0 1rem 0",
                 md: "2rem 0 1rem 0",
               },
               fontSize: {
@@ -168,9 +168,9 @@ function Signup() {
             onChange={onChangeHadler}
             sx={{
               padding: {
-                sm: "1rem 0rem 1rem 0rem",
+                sm: "0rem 0rem 0rem 0rem",
                 md: "0 1rem 0 0",
-                xs: "1rem 0rem 1rem 0rem",
+                xs: "0rem 0rem 0rem 0rem",
               },
             }}
           />
@@ -186,9 +186,9 @@ function Signup() {
             onChange={onChangeHadler}
             sx={{
               padding: {
-                sm: "1rem 0rem 1rem 0rem",
+                sm: "0rem 0rem 0rem 0rem",
                 md: "0 1rem 0 0",
-                xs: "1rem 0rem 1rem 0rem",
+                xs: "0rem 0rem 0rem 0rem",
               },
             }}
           />
@@ -202,13 +202,13 @@ function Signup() {
             name="email"
             fullWidth
             value={formData.email}
-            sx={{
-              padding: {
-                sm: "1rem 0rem 1rem 0rem",
-                md: "0 1rem 0 0",
-                xs: "1rem 0rem 1rem 0rem",
-              },
-            }}
+            // sx={{
+            //   padding: {
+            //     sm: "1rem 0rem 1rem 0rem",
+            //     md: "0 1rem 0 0",
+            //     xs: "1rem 0rem 1rem 0rem",
+            //   },
+            // }}
             onChange={onChangeHadler}
             InputProps={{
               endAdornment: (
@@ -228,13 +228,13 @@ function Signup() {
             placeholder="Password"
             name="password"
             fullWidth
-            sx={{
-              padding: {
-                sm: "1rem 0rem 1rem 0rem",
-                md: "0 1rem 0 0",
-                xs: "1rem  0rem 1rem 0rem",
-              },
-            }}
+            // sx={{
+            //   padding: {
+            //     sm: "1rem 0rem 1rem 0rem",
+            //     md: "0 1rem 0 0",
+            //     xs: "1rem  0rem 1rem 0rem",
+            //   },
+            // }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

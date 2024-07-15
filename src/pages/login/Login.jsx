@@ -108,8 +108,8 @@ function Login() {
         container
         sx={{
           height: {
-            xs: "100%",
-            sm: "100%",
+            xs: "95%",
+            sm: "95%",
             md: "95%",
           },
           padding: "1rem",
@@ -150,7 +150,7 @@ function Login() {
             }}
           />
         </Grid>
-        
+
         <Grid item md={12} xs={12} sm={12}>
           <TextField
             required
