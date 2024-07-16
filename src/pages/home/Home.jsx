@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <>
       <div className="hero-section" data-aos="zoom-in"></div>
-      <hr />
-      <Items  />
+
+      <Items />
     </>
   );
 };

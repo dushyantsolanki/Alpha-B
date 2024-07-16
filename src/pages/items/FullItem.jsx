@@ -122,7 +122,7 @@ function FullItem() {
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  go_for_shop(data);
+                  dispatch(go_for_shop(data));
                   navigate("/home/payment");
                 }}
               >

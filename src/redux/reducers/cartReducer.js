@@ -11,8 +11,6 @@ let Cartslice = createSlice({
       let rmv = state.filter((item) => item.id !== action.payload);
       return rmv;
     },
-
-    
     increment(state, action) {
       let item = state.find((item) => item.id === action.payload);
       if (item) {

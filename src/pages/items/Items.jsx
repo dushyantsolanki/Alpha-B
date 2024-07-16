@@ -3,8 +3,13 @@ import { useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
 import { firestore } from "../../firebase";
 import { useDispatch, useSelector, add } from "../../redux";
+import { Button, TextField } from "@mui/material";
+import { go_for_shop } from "../../redux";
+
 function Items() {
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.cartReducer);
@@ -17,19 +22,48 @@ function Items() {
     console.log("cart data : ", itemss);
     console.log("cart data : ", cartData);
   };
+
   const fetchData = async () => {
     const response = await firestore.receveDoc();
-    // console.log(response.payload);
     if (response.status === true) {
       setData(response.payload);
+      setFilteredData(response.payload);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (search) {
+      const filtered = data.filter((item) => {
+        return item.title.toLowerCase().includes(search.toLowerCase());
+      });
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(data);
+    }
+  }, [search, data]);
+
   return (
     <>
+      <hr />
+      <div className="search-bar-items" style={{ margin: "2rem 0 2rem 0" }}>
+        <TextField
+          id="outlined-basic"
+          label="Search"
+          variant="outlined"
+          sx={{
+            margin: "0",
+            width: { xs: "70%", sm: "60%", md: "40%" },
+          }}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        />
+      </div>
+      <hr />
       <div
         className="main-blog-page"
         style={{
@@ -40,11 +74,11 @@ function Items() {
           flexWrap: "wrap",
         }}
       >
-        {data?.map((html, index) => {
+        {filteredData?.map((html, index) => {
           return (
             <div
               data-aos="zoom-in"
-              key={index + 1}
+              key={index}
               className="cart-item"
               style={{
                 width: "350px",
@@ -57,7 +91,7 @@ function Items() {
               <div className="item-img">
                 <img
                   src={html.imageUrl}
-                  alt="item-imge"
+                  alt="item-img"
                   width="350px"
                   onClick={() => {
                     navigate(`/home/items/${html.id}`);

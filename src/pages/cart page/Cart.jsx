@@ -6,6 +6,7 @@ import {
   decrement,
   increment,
   remove,
+  go_for_shop,
 } from "../../redux/index.js";
 import { useNavigate } from "react-router-dom";
 
@@ -107,6 +108,7 @@ const Cart = () => {
                         padding: "5px 10px 5px 10px",
                       }}
                       onClick={() => {
+                        dispatch(go_for_shop(html));
                         navigate("/home/payment");
                       }}
                     >

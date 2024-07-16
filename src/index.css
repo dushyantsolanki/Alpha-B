@@ -236,6 +236,7 @@ header .navbar {
   position: relative;
 }
 
+
 nav {
   display: flex;
   align-items: center;
@@ -329,6 +330,11 @@ header > .navbar > .nav-content-list > nav > ul > li:hover {
 
   header > .navbar > .nav-content-list > nav > ul {
     display: none;
+  }
+  .full-blog-page-main {
+    flex-direction: column !important;
+    width: 95vw;
+    padding: 1rem;
   }
 }
 

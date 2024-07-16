@@ -5,18 +5,18 @@ function HomeLayout() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="home-layout" >
+      <div className="home-layout">
         <Navbar />
 
         <div className="item-blogs">
           <Outlet />
         </div>
-        <img
+        {/* <img
           src="https://www.bighaat.com/_next/image?url=%2Fimages%2FloginIllustration.png&w=1920&q=75"
           alt=""
           width="100%"
           style={{ marginBottom: "-133px" }}
-        />
+        /> */}
         <div
           className="scroll-btn"
           style={{
